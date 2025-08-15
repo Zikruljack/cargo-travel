@@ -86,9 +86,9 @@ class FleetKanan extends StatelessWidget {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 12,
-                              crossAxisSpacing: 12,
-                              childAspectRatio: 2.2,
+                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 8,
+                              childAspectRatio: 2.5,
                             ),
                         itemBuilder: (context, i) {
                           final item = actions[i];
@@ -134,21 +134,22 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
     return ElevatedButton.icon(
-      icon: Icon(item.icon, size: 20),
+      icon: Icon(item.icon, size: 18),
       label: Text(
         item.label,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+        ),
       ),
       style: ElevatedButton.styleFrom(
-        elevation: selected ? 1 : 0,
-        backgroundColor: selected ? scheme.primaryContainer : null,
-        foregroundColor: selected ? scheme.onPrimaryContainer : null,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        minimumSize: const Size(double.infinity, 48),
+        backgroundColor: selected ? Colors.blue : Colors.grey[200],
+        foregroundColor: selected ? Colors.white : Colors.black87,
+        elevation: selected ? 2 : 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.symmetric(vertical: 8),
       ),
       onPressed: onTap,
     );
