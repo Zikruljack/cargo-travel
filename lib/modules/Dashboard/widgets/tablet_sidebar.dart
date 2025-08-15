@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../Auth/providers/auth_provider.dart';
 
 class TabletSidebar extends StatefulWidget {
   const TabletSidebar({super.key});
@@ -136,9 +138,38 @@ class _TabletSidebarState extends State<TabletSidebar> {
             child: const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.of(ctx).pop();
-              // Add logout functionality here
+
+              // Show loading indicator
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) =>
+                    const Center(child: CircularProgressIndicator()),
+              );
+
+              // Get AuthProvider and call logout
+              final authProvider = Provider.of<AuthProvider>(
+                context,
+                listen: false,
+              );
+              await authProvider.logout();
+
+              // Hide loading indicator
+              if (mounted) {
+                Navigator.of(context).pop();
+              }
+
+              // Show logout message if there's an error
+              if (mounted && authProvider.errorMessage != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(authProvider.errorMessage!),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
             },
             child: const Text('Logout', style: TextStyle(color: Colors.red)),
           ),
