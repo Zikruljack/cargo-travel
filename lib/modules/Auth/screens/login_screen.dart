@@ -31,7 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     if (!_formKey.currentState!.validate()) return;
 
-    setState(() => _isLoading = true);
+    if (mounted) {
+      setState(() => _isLoading = true);
+    }
 
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
@@ -40,7 +42,9 @@ class _LoginScreenState extends State<LoginScreen> {
       _passwordController.text,
     );
 
-    setState(() => _isLoading = false);
+    if (mounted) {
+      setState(() => _isLoading = false);
+    }
 
     if (mounted && authProvider.isAuthenticated) {
       // Navigate to home/dashboard
@@ -51,6 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _showErrorDialog(String message) {
+    if (!mounted) return;
+
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -79,8 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: ResponsiveHelper.getSpacing(context, multiplier: 3.75)),
-                
+                SizedBox(
+                  height: ResponsiveHelper.getSpacing(context, multiplier: 1),
+                ),
+
                 // Logo/Title
                 Icon(
                   Icons.local_shipping,
@@ -139,7 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             : Icons.visibility_off_outlined,
                       ),
                       onPressed: () {
-                        setState(() => _obscurePassword = !_obscurePassword);
+                        if (mounted) {
+                          setState(() => _obscurePassword = !_obscurePassword);
+                        }
                       },
                     ),
                     border: const OutlineInputBorder(),
@@ -205,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                // const SizedBox(height: 24),
 
                 // Demo Credentials
                 Container(
@@ -225,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      // const SizedBox(height: 8),
                       Row(
                         children: [
                           const Text(

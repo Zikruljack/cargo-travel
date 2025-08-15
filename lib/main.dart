@@ -37,7 +37,7 @@ class MainApp extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          cardTheme: const CardTheme(
+          cardTheme: const CardThemeData(
             elevation: 2,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -47,10 +47,7 @@ class MainApp extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
-            ),
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
@@ -58,10 +55,7 @@ class MainApp extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
           ),
         ),

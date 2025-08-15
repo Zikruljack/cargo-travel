@@ -194,9 +194,6 @@ class ResponsiveHelper {
       );
     }
 
-    return Padding(
-      padding: padding,
-      child: child,
-    );
+    return Padding(padding: padding, child: child);
   }
 }

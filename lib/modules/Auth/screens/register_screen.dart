@@ -43,7 +43,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
-    setState(() => _isLoading = true);
+    if (mounted) {
+      setState(() => _isLoading = true);
+    }
 
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
@@ -56,7 +58,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           : _phoneController.text.trim(),
     );
 
-    setState(() => _isLoading = false);
+    if (mounted) {
+      setState(() => _isLoading = false);
+    }
 
     if (mounted && authProvider.isAuthenticated) {
       // Navigate to home/dashboard
@@ -67,6 +71,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _showErrorDialog(String message) {
+    if (!mounted) return;
+
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -198,7 +204,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             : Icons.visibility_off_outlined,
                       ),
                       onPressed: () {
-                        setState(() => _obscurePassword = !_obscurePassword);
+                        if (mounted) {
+                          setState(() => _obscurePassword = !_obscurePassword);
+                        }
                       },
                     ),
                     border: const OutlineInputBorder(),
@@ -229,10 +237,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             : Icons.visibility_off_outlined,
                       ),
                       onPressed: () {
-                        setState(
-                          () => _obscureConfirmPassword =
-                              !_obscureConfirmPassword,
-                        );
+                        if (mounted) {
+                          setState(
+                            () => _obscureConfirmPassword =
+                                !_obscureConfirmPassword,
+                          );
+                        }
                       },
                     ),
                     border: const OutlineInputBorder(),
@@ -255,7 +265,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Checkbox(
                       value: _agreeToTerms,
                       onChanged: (value) {
-                        setState(() => _agreeToTerms = value ?? false);
+                        if (mounted) {
+                          setState(() => _agreeToTerms = value ?? false);
+                        }
                       },
                     ),
                     Expanded(
