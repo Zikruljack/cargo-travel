@@ -220,7 +220,7 @@ class FleetKiri extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   mainAxisSpacing: 8,
                   crossAxisSpacing: 8,
-                  childAspectRatio: 2.5,
+                  childAspectRatio: 1.5,
                   children: [
                     _operationButton(
                       "Traveling",

@@ -79,10 +79,6 @@ class DashboardScreen extends StatelessWidget {
                                 loadStatus: "Bermuatan",
                                 activeLabel: "Antri Kelanis",
                                 actions: const [
-                                  ActionItem(
-                                    "Standby",
-                                    Icons.pause_circle_filled,
-                                  ),
                                   ActionItem("Istirahat", Icons.free_breakfast),
                                   ActionItem("Change Shift", Icons.swap_horiz),
                                   ActionItem("Antri ROM", Icons.list_alt),
