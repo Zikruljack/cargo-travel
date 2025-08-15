@@ -23,6 +23,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()..initializeAuth()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Cargo Travel',
         theme: ThemeData(
           primarySwatch: Colors.blue,
